@@ -27,9 +27,6 @@ function main(error, distritosAux, data) {
 
     distritos = topojson.feature(distritosAux, distritosAux.objects.distritos);
 
-    console.log(data);
-    console.log(distritos);
-
     ///HACEMOS EL JOIN
     distritos.features.forEach(function(item) {
         let join = data.filter(function(subItem) {
@@ -113,56 +110,4 @@ function main(error, distritosAux, data) {
             }            
         })
         .attr("d", path);
-
-        // mapLayer2.selectAll(".dist2")
-        //     .data(distritos.features)
-        //     .enter()
-        //     .append("path")
-        //     .attr("class", "dist2")
-        //     .style('stroke','none')
-        //     .style('opacity', '1')
-        //     .style('fill', function(d) {
-        //         if(d.data) {
-        //             if (d.data.porc_envejecido != 'NA') {
-        //                 let color = '';
-        //                 let env = +d.data.porc_envejecido.replace(',','.');
-        //                 let total = +d.data.total;
-
-        //                 if ( total < 1000) {
-        //                     if (env < 15) {
-        //                         color = '#e8e8e8';
-        //                     } else if (env >= 15 && env < 30) {
-        //                         color = '#b5c0da';
-        //                     } else {
-        //                         color = '#6c83b5';
-        //                     }
-        //                 } else if ( total >= 1000 && total < 20000) {
-        //                     if (env < 15) {
-        //                         color = '#b8d6be';
-        //                     } else if (env >= 15 && env < 30) {
-        //                         color = '#8fb2b3';
-        //                     } else {
-        //                         color = '#567994';
-        //                     }
-        //                 } else {
-        //                     if (env < 15) {
-        //                         color = '#73ae7f';
-        //                     } else if (env >= 15 && env < 30) {
-        //                         color = '#5a9178';
-        //                     } else {
-        //                         color = '#2b5a5b';
-        //                     }
-        //                 }
-
-        //                 return color;
-
-
-        //             } else {
-        //                 return '#ccc';
-        //             }                
-        //         } else {
-        //             return '#ccc';
-        //         }            
-        //     })
-        //     .attr("d", path);
 }
