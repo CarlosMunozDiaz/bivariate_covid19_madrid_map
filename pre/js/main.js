@@ -14,11 +14,11 @@ const height = parseInt(map1.style('height'));
 
 let mapLayer1 = map1.append('svg').attr('width', width).attr('height', height),
     mapLayer2 = map2.append('svg').attr('width', width).attr('height', height);
-    let distritos;
+let distritos;
 let projection, path;
 
 d3.queue()
-    .defer(d3.json, 'https://raw.githubusercontent.com/carlosmunozdiaz/simple_covid19_madrid_map/main/data/distritos_topo.json')
+    .defer(d3.json, 'https://raw.githubusercontent.com/carlosmunozdiaz/simple_covid19_madrid_map/main/data/distritos_v2.json')
     .defer(d3.csv, 'https://raw.githubusercontent.com/carlosmunozdiaz/simple_covid19_madrid_map/main/data/covid19_anni.csv')
     .await(main);
 
