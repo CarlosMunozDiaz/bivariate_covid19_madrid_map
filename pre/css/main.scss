@@ -1,0 +1,89 @@
+@import './reset';
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+
+    //Tamaño de elementos para utilizar EMs posteriormente
+    font-size: 16px;
+    line-height: 1.25em;
+}
+
+.container {
+    width: 100%;
+    max-width: 768px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 1.25em;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+legend {
+    width: 180px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #262626;
+
+    margin-top: 12px;
+
+    .legend__upper {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+
+        .legend__y-axis {
+            position: absolute;
+            top: 52px;
+            left: -80px;
+            transform: rotate(-90deg);
+        }
+
+        .legend__viz {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-wrap: wrap;
+
+            transform: translateX(0px);
+
+            & div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                box-sizing: border-box;
+                width: 40px;
+            }
+        }
+    }
+
+    .legend__down {
+        display: inline-block;
+        transform: translate(30px,4px);
+    }
+}
+
+.b-map {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 12px;
+
+    .map {
+        width: 50%;
+        height: 400px;
+    }
+}
+
+.source {
+    font-size: 1em;
+    font-weight: 300;
+    line-height: 1.1;
+}
