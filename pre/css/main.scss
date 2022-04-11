@@ -42,7 +42,7 @@ body {
         .legend__y-axis {
             position: absolute;
             top: 52px;
-            left: -80px;
+            left: -60px;
             transform: rotate(-90deg);
         }
 
@@ -78,7 +78,11 @@ body {
 
     .map {
         width: 50%;
-        height: 400px;
+        height: auto;
+
+        .map-viz {
+            height: 400px;
+        }
     }
 }
 
@@ -86,4 +90,6 @@ body {
     font-size: 1em;
     font-weight: 300;
     line-height: 1.1;
+
+    margin-top: 12px;
 }
