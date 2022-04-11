@@ -19,7 +19,7 @@ let projection, path;
 
 d3.queue()
     .defer(d3.json, 'https://raw.githubusercontent.com/carlosmunozdiaz/simple_covid19_madrid_map/main/data/distritos_v2.json')
-    .defer(d3.csv, 'https://raw.githubusercontent.com/carlosmunozdiaz/simple_covid19_madrid_map/main/data/covid19_anni.csv')
+    .defer(d3.csv, 'https://raw.githubusercontent.com/carlosmunozdiaz/simple_covid19_madrid_map/main/data/covid19_bivariate_2020.csv')
     .await(main);
 
 function main(error, distritosAux, data) {
@@ -43,11 +43,11 @@ function main(error, distritosAux, data) {
     projection = d3_composite.geoConicConformalSpain().scale(2000).fitSize([width,height], distritos);
     path = d3.geoPath(projection);
 
-    mapLayer.selectAll(".dist")
+    mapLayer1.selectAll(".dist1")
         .data(distritos.features)
         .enter()
         .append("path")
-        .attr("class", "dist")
+        .attr("class", "dist1")
         .style('stroke','none')
         .style('opacity', '1')
         .style('fill', function(d) {
@@ -95,19 +95,55 @@ function main(error, distritosAux, data) {
         })
         .attr("d", path);
 
-    mapLayer.append('path')
-        .style('fill', 'none')
-        .style('stroke', '#000')
-        .attr('d', projection.getCompositionBorders());
+        mapLayer2.selectAll(".dist2")
+            .data(distritos.features)
+            .enter()
+            .append("path")
+            .attr("class", "dist2")
+            .style('stroke','none')
+            .style('opacity', '1')
+            .style('fill', function(d) {
+                if(d.data) {
+                    if (d.data.porc_envejecido != 'NA') {
+                        let color = '';
+                        let env = +d.data.porc_envejecido.replace(',','.');
+                        let total = +d.data.total;
 
-    mapLayer.selectAll('.prov')
-        .data(provs.features)
-        .enter()
-        .append('path')
-        .attr('d', path)
-        .style('stroke-width','0.25px')
-        .style('stroke', '#000')
-        .style('fill', 'transparent');
+                        if ( total < 1000) {
+                            if (env < 15) {
+                                color = '#e8e8e8';
+                            } else if (env >= 15 && env < 30) {
+                                color = '#b5c0da';
+                            } else {
+                                color = '#6c83b5';
+                            }
+                        } else if ( total >= 1000 && total < 20000) {
+                            if (env < 15) {
+                                color = '#b8d6be';
+                            } else if (env >= 15 && env < 30) {
+                                color = '#8fb2b3';
+                            } else {
+                                color = '#567994';
+                            }
+                        } else {
+                            if (env < 15) {
+                                color = '#73ae7f';
+                            } else if (env >= 15 && env < 30) {
+                                color = '#5a9178';
+                            } else {
+                                color = '#2b5a5b';
+                            }
+                        }
 
-    setChartCanvas();
+                        return color;
+
+
+                    } else {
+                        return '#ccc';
+                    }                
+                } else {
+                    return '#ccc';
+                }            
+            })
+            .attr("d", path);
 }
