@@ -25,7 +25,7 @@ d3.queue()
 function main(error, distritosAux, data) {
     if (error) throw error;
 
-    distritos = topojson.feature(distritosAux, municipios.objects.distritos);
+    distritos = topojson.feature(distritosAux, distritosAux.objects.distritos);
 
     console.log(data);
 

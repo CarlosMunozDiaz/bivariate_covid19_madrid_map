@@ -26,13 +26,13 @@ body {
     line-height: 1.1;
 }
 
-legend {
+.legend {
     width: 180px;
     font-size: 12px;
     font-weight: 500;
     color: #262626;
 
-    margin-top: 12px;
+    margin: 12px auto 0px auto;
 
     .legend__upper {
         display: flex;
