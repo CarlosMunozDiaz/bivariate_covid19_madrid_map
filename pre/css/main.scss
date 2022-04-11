@@ -27,28 +27,45 @@ body {
 }
 
 .legend {
-    width: 180px;
+    width: 160px;
+    height: 200px;
     font-size: 12px;
     font-weight: 500;
     color: #262626;
 
     margin: 12px auto 0px auto;
 
+    position: relative;
+
     .legend__upper {
         display: flex;
         flex-direction: row;
         position: relative;
 
-        .legend__y-axis {
+        .legend__y-axis_1 {
             position: absolute;
-            top: 52px;
-            left: -60px;
+            top: 72px;
+            left: -40px;
+            transform: rotate(-90deg);
+        }
+
+        .legend__y-axis_2 {
+            position: absolute;
+            top: 142px;
+            left: -20px;
+            transform: rotate(-90deg);
+        }
+
+        .legend__y-axis_3 {
+            position: absolute;
+            top: 2px;
+            left: -20px;
             transform: rotate(-90deg);
         }
 
         .legend__viz {
-            width: 120px;
-            height: 120px;
+            width: 160px;
+            height: 160px;
             display: flex;
             flex-wrap: wrap;
 
@@ -59,14 +76,26 @@ body {
                 justify-content: center;
                 align-items: center;
                 box-sizing: border-box;
-                width: 30px;
+                width: 40px;
             }
         }
     }
 
-    .legend__down {
-        display: inline-block;
-        transform: translate(30px,4px);
+    .legend__down_1 {
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .legend__down_2 {
+        position: absolute;
+        bottom: 20px;
+        left: 0px;
+    }
+    .legend__down_3 {
+        position: absolute;
+        bottom: 20px;
+        right: 0px;
     }
 }
 

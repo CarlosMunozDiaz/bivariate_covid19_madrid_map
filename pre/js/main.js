@@ -54,7 +54,7 @@ function main(error, distritosAux, data) {
                 let renta = +d.data[0].renta_neta_media_persona;
                 let tasa_covid = +d.data[0].tasa_incidencia_acumulada_total;
 
-                if(tasa_covid < 141.5) {
+                if(tasa_covid < 155.5) {
 
                     if (renta < 14575) {
                         color = '#e8e8e8';
@@ -66,7 +66,7 @@ function main(error, distritosAux, data) {
                         color = '#5ac8c8';
                     }   
 
-                } else if (tasa_covid >= 141.5 & tasa_covid < 162.7) {
+                } else if (tasa_covid >= 155.5 & tasa_covid < 191) {
 
                     if (renta < 14575) {
                         color = '#dabdd4';
@@ -78,7 +78,7 @@ function main(error, distritosAux, data) {
                         color = '#5abdc8';
                     } 
                 
-                } else if(tasa_covid >= 162.7 & tasa_covid < 184.2) {
+                } else if(tasa_covid >= 191 & tasa_covid < 226.5) {
 
                     if (renta < 14575) {
                         color = '#cc92c1';
@@ -110,4 +110,75 @@ function main(error, distritosAux, data) {
             }            
         })
         .attr("d", path);
+
+        mapLayer2.selectAll(".dist2")
+            .data(distritos.features)
+            .enter()
+            .append("path")
+            .attr("class", "dist2")
+            .style('stroke','none')
+            .style('opacity', '1')
+            .style('fill', function(d) {
+                if(d.data) {
+                    let color = '';
+
+                    let renta = +d.data[1].renta_neta_media_persona;
+                    let tasa_covid = +d.data[1].tasa_incidencia_acumulada_total;
+
+                    if(tasa_covid < 155.5) {
+
+                        if (renta < 14575) {
+                            color = '#e8e8e8';
+                        } else if (renta >= 14575 & renta < 18590) {
+                            color = '#bddede';
+                        } else if (renta >= 18590 & renta < 23325) {
+                            color = '#8ed4d4';
+                        } else {
+                            color = '#5ac8c8';
+                        }   
+
+                    } else if (tasa_covid >= 155.5 & tasa_covid < 191) {
+
+                        if (renta < 14575) {
+                            color = '#dabdd4';
+                        } else if (renta >= 14575 & renta < 18590) {
+                            color = '#bdbdd4';
+                        } else if (renta >= 18590 & renta < 23325) {
+                            color = '#8ebdd4';
+                        } else {
+                            color = '#5abdc8';
+                        } 
+                    
+                    } else if(tasa_covid >= 191 & tasa_covid < 226.5) {
+
+                        if (renta < 14575) {
+                            color = '#cc92c1';
+                        } else if (renta >= 14575 & renta < 18590) {
+                            color = '#bd92c1';
+                        } else if (renta >= 18590 & renta < 23325) {
+                            color = '#8e92c1';
+                        } else {
+                            color = '#5a92c1';
+                        } 
+
+                    } else {
+
+                        if (renta < 14575) {
+                            color = '#be64ac';
+                        } else if (renta >= 14575 & renta < 18590) {
+                            color = '#bd64ac';
+                        } else if (renta >= 18590 & renta < 23325) {
+                            color = '#8e64ac';
+                        } else {
+                            color = '#5a64ac';
+                        } 
+
+                    }
+
+                    return color;
+                } else {
+                    return '#ccc';
+                }            
+            })
+            .attr("d", path);
 }
